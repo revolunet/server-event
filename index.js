@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 function prepareRequest(req, res) {
 	req.socket.setTimeout(Number.MAX_VALUE);
@@ -16,7 +17,7 @@ module.exports = function (options) {
 	var retry        = parseInt(options.retry, 10) || 3000;
 
 	if (options.express) {
-		fs.readFile('client.js', function (error, data) {
+		fs.readFile(path.join(__dirname, 'client.js'), function (error, data) {
 			var clientJs;
 
 			if (error) {
